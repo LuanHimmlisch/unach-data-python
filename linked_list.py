@@ -1,70 +1,41 @@
-class Node():
-    def __init__(self, data):
+class Node:
+    def __init__(self, data=None):
         self.data = data
         self.next = None
-        self.prev = None
-        pass
 
 
-class DoubleLinkedList():
+class LinkedList:
     def __init__(self):
-        self.first = None
-        self.last = None
-        self.size = 0
+        self.head = None
         pass
 
-    def isEmpty(self):
-        return self.primero == None
+    def append(self, data_in):
+        auxiliar_node = Node(data_in)
+        auxiliar_node.next = self.head
+        self.head = auxiliar_node
 
-    def append(self, data):
-        if self.isEmpty():
-            self.first = self.last = Node(data)
-        else:
-            auxiliar_node = self.last
-            self.last = auxiliar_node.next = Node(data)
-            self.last.prev = auxiliar_node
-        self.size += 1
+    def remove(self, data):
+        head = self.head
 
-    def prepend(self, data):
-        if self.isEmpty():
-            self.first = self.last = Node(data)
-        else:
-            auxiliar_node = Node(data)
-            auxiliar_node.next = self.first
-            self.first.prev = auxiliar_node
-            self.first = auxiliar_node
-        self.size += 1
+        if (head is not None):
+            if (head.data == data):
+                self.head = head.next
+                head = None
+                return
+        while (head is not None):
+            if head.data == data:
+                break
+            prev = head
+            head = head.next
 
-    def loop(self):
-        auxiliar_node = self.first
-        while auxiliar_node:
-            print(auxiliar_node.data)
-            auxiliar_node = auxiliar_node.next
-
-    def loop_end(self):
-        auxiliar_node = self.last
-        while auxiliar_node:
-            print(auxiliar_node.data)
-            auxiliar_node = auxiliar_node.prev
-
-    def delete_start(self):
-        if self.isEmpty():
+        if (head == None):
             return
-        elif self.first.next == None:
-            self.first = self.last = None
-            self.size = 0
-        else:
-            self.first = self.first.next
-            self.first.prev = None
-            self.size -= 1
 
-    def delete_last(self):
-        if self.isEmpty:
-            return
-        elif self.first.next == None:
-            self.first = self.last = None
-            self.size = 0
-        else:
-            self.last = self.last.prev
-            self.last.next = None
-            self.size -= 1
+        prev.next = head.next
+        head = None
+
+    def show(self):
+        printval = self.head
+        while (printval):
+            print(printval.data),
+            printval = printval.next
