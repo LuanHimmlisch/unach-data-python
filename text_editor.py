@@ -1,4 +1,3 @@
-from sqlite3 import connect
 import sys
 from termios import TCIOFLUSH, tcflush
 from time import sleep
