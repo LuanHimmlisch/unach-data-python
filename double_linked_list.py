@@ -35,6 +35,21 @@ class DoubleLinkedList():
             self.first = auxiliar_node
         self.size += 1
 
+    def at(self, index):
+        if self.isEmpty() or not isinstance(index, int):
+            return None
+        else:
+            curIndex = 0
+            node = self.first
+            while curIndex != index:
+                print(node.next)
+                if node.next == None:
+                    return None
+
+                node = node.next
+                curIndex += 1
+            return node
+
     def loop(self):
         auxiliar_node = self.first
         while auxiliar_node:
